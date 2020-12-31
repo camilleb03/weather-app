@@ -5,7 +5,7 @@ from api import get_weather_by_city
 app = Flask(__name__)
 
 @app.route('/', methods=("GET", "POST"))
-def index():
+def search():
     if request.method == "POST":
         city = request.form["city"]
         error = None
@@ -27,6 +27,10 @@ def result(city_name):
         print("Response\n", data)
     return render_template('weather/result.html', city_name=city_name, data=data)
 
+def redirect_url(default='weather/index'):
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for(default)
 
 if __name__ == '__main__':
     app.run(debug=True,)
