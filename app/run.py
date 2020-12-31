@@ -1,8 +1,13 @@
-from flask import Flask, redirect, render_template, request, url_for, flash
+from flask import Flask, redirect, render_template, request, url_for, flash, abort
 from api import get_weather_by_city
 
 
 app = Flask(__name__)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html', error=e), 404
 
 @app.route('/', methods=("GET", "POST"))
 def search():
@@ -22,15 +27,14 @@ def search():
 
 @app.route('/<city_name>')
 def result(city_name):
-    data = get_weather_by_city(city=city_name)
-    if data:
-        print("Response\n", data)
-    return render_template('weather/result.html', city_name=city_name, data=data)
-
-def redirect_url(default='weather/index'):
-    return request.args.get('next') or \
-           request.referrer or \
-           url_for(default)
+    res = get_weather_by_city(city=city_name)
+    if res.ok:
+        data = res.json()
+        print("Response\n", res)
+        return render_template('weather/result.html', city_name=city_name, data=data)
+    else:
+        print(res.json()['message'])
+        abort(404, description=res.json()['message'])
 
 if __name__ == '__main__':
     app.run(debug=True,)
