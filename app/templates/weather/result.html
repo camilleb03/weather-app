@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}{{ Search }}{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+    {% if data %}
+    <h1>{{ data }}</h1>
+    <h1>{{ data['main']['temp'] }}</h1>
+    <h1>{{ data['weather'] }}</h1>
+    {% endif %}
+{% endblock %}
