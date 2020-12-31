@@ -6,7 +6,7 @@ BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def get_weather_by_city(city='London'):
     try:
-        res = requests.get(url=BASE_URL, params=dict(q=city, APPID=API_KEY))
+        res = requests.get(url=BASE_URL, params=dict(q=city, units="metric", APPID=API_KEY))
         res.raise_for_status()
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)

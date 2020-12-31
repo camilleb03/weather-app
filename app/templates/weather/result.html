@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block header %}
-  <h1>{% block title %}{{ city_name }}{% endblock %}</h1>
+    <h1>{% block title %}Result{% endblock %}</h1>
 {% endblock %}
 {% block content %}
     {% if data %}
-    <h1>{{ data }}</h1>
-    <h1>{{ data['main']['temp'] }}</h1>
-    <h1>{{ data['weather'] }}</h1>
+    <h1>{{ data['name'] }}, {{ data['sys']['country'] }}</h1>
+    <h1>{{ data['main']['temp'] }} °C</h1>
     {% endif %}
     <a href="{{ url_for('search') }}"><button type="button" class="btn btn-outline-secondary">Back</button></a>
 {% endblock %}
