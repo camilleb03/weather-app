@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
-{% block header %}
-    <h1>{% block title %}Result{% endblock %}</h1>
-{% endblock %}
-{% block content %}
-    {% if data %}
-    <h1>{{ data['name'] }}, {{ data['sys']['country'] }}</h1>
-    <h1>{{ data['main']['temp'] }} °C</h1>
-    {% endif %}
-    <a href="{{ url_for('search') }}"><button type="button" class="btn btn-outline-secondary">Back</button></a>
+{% block page_name %}Result{% endblock %}
+{% block page_content %}
+<div class="col-lg-6 offset-lg-3">
+  <div class="row justify-content-center vertical-center">
+    <div>
+      {% if data %}
+      <h1>{{ data['name'] }}, {{ data['sys']['country'] }}</h1>
+      <h1>{{ data['main']['temp'] }} °C</h1>
+      <h1>{{ data['weather'][0]['icon'] }}</h1>
+      <div class="media-left">
+        <figure class="image is-50x50">
+          <img src="http://openweathermap.org/img/w/04d.png" alt="Image">
+        </figure>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

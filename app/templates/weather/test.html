@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block page_name %}Result{% endblock %}
+{% block page_content %}
+<div class="col-lg-6 offset-lg-3">
+  <div class="row justify-content-center vertical-center">
+    <div>
+      {% if data %}
+      <h1>{{ data }}</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
