@@ -7,11 +7,8 @@
       {% if data %}
       <h1>{{ data['name'] }}, {{ data['sys']['country'] }}</h1>
       <h1>{{ data['main']['temp'] }} °C</h1>
-      <h1>{{ data['weather'][0]['icon'] }}</h1>
-      <div class="media-left">
-        <figure class="image is-50x50">
-          <img src="http://openweathermap.org/img/w/04d.png" alt="Image">
-        </figure>
+      <div>
+        <i class="wi {{ icon_class }}"></i>
       </div>
       {% endif %}
     </div>

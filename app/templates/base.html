@@ -2,12 +2,13 @@
 <html>
 <head>
 {% block head %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather-icons.min.css') }}">
     <title>{% block title %}{% block page_name %}{% endblock %} &#183 Weather App{% endblock %}</title>
 {% endblock %}
 </head>
@@ -15,7 +16,7 @@
 {% block navbar %}
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="{{ url_for('search') }}">
-    <img src="/static/nav_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="/static/images/nav_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     Weather App
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -33,13 +34,6 @@
         <a class="nav-link" href="#">About</a>
       </li>
     </ul>
-    <ul class="navbar-nav">
-      <form class="form-inline my-2 my-lg-0" method="post">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search a city" autofocus 
-        aria-label="Search" name="city" id="city" value="{{ request.form['city'] }}" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </ul>
   </div>
 </nav>
 {% endblock %}
@@ -49,7 +43,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 {% endblock %}
 </body>
 </html>
