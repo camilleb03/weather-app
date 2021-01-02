@@ -45,15 +45,11 @@ def result(city_name):
 @app.route('/postmethod', methods=['POST'])
 def postmethod():
     data = request.get_json()
-    print("AJAX", data)
+    print(data)
     return jsonify(data)
 
-@app.route('/geo_test', methods=['GET', 'POST'])
+@app.route('/geo_test')
 def geo_loc():
-    if request.method == "POST":
-        data = request.get_json()
-        print("AJAX", data)
-    # return jsonify(data)
     return render_template('geo_test.html')
 
 @app.route('/test')
