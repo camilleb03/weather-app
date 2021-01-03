@@ -4,7 +4,7 @@ import requests
 class OWM_API:
     def __init__(self):
 
-        self.OWM_API_KEY = os.environ.get("API_KEY", None)
+        self.OWM_API_KEY = os.environ.get("OWM_API_KEY", None)
         self.OWM_BASE_URL = "http://api.openweathermap.org/data/2.5/"
 
     def get_current_weather_by_city_name(self, city, units="metric"):
