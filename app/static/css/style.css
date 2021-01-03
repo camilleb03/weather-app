@@ -4,6 +4,16 @@
     background-color: blueviolet;
 }
 
+.weather-next-day-even {
+    background-color: #457B9D;
+    color: #F1FAEE;
+}
+
+.weather-next-day-odd {
+    background-color: #F1FAEE;
+    color: #457B9D;
+}
+
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 90vh; /* These two lines are counted as one :-)       */
@@ -17,148 +27,58 @@
      min-width: 100%
  }
 
- body {
-     background-color: #f9f9fa
- }
+.day-weather-box {
+  border: 1px solid #28688C;
+  background-color: #2E7FA1;
+  border-radius: 5px;
+  height: 5em;
+}
 
- .flex {
-     -webkit-box-flex: 1;
-     -ms-flex: 1 1 auto;
-     flex: 1 1 auto
- }
+.day-weather-box p{
+  margin-bottom: 0;
+}
 
- @media (max-width:991.98px) {
-     .padding {
-         padding: 1.5rem
-     }
- }
+.side-weather-info {
+  padding: 0px 10px;
+}
 
- @media (max-width:767.98px) {
-     .padding {
-         padding: 1rem
-     }
- }
+.day-weather-inner-box {
+  display: inline-flex;
+  margin: 14px auto;
+  padding: 0px 5px;
+}
 
- .padding {
-     padding: 5rem
- }
+.forecast-main {
+  padding: 0px 0px 0px 30px;
+}
 
- .grid-margin,
- .purchace-popup>div {
-     margin-bottom: 25px
- }
+.forecast-icon {
+  font-size: 25px;
+  margin-left: 5px;
+}
 
- .card {
-     border: 0;
-     border-radius: 2px
- }
+.modal-body p{
+  color: #333;
+}
 
- .card-weather {
-     background: #e1ecff;
-     background-image: linear-gradient(to left bottom, #d6eef6, #dff0fa, #e7f3fc, #eff6fe, #f6f9ff)
- }
+.weather-location input{
+    background-color:rgba(0,0,0,.5);
+    border:1px solid rgba(255,255,255,.5)
+}
 
- .card {
-     position: relative;
-     display: flex;
-     flex-direction: column;
-     min-width: 0;
-     word-wrap: break-word;
-     background-color: #fff;
-     background-clip: border-box;
-     border: 1px solid rgba(0, 0, 0, 0.125);
-     border-radius: 0.25rem
- }
+.weather-location input:focus{
+    border:1px solid rgba(255,255,255,.7)
+}
 
- .card-weather .card-body:first-child {
-     background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center;
-     background-size: cover
- }
+.weather-day{
+    height:150px;
+    border-left:1px solid rgba(0,0,0,.05)
+}
 
- .card .card-body {
-     padding: 1.88rem 1.81rem
- }
+.weather-day.is-today{
+    border-left:none
+    }
 
- .card-body {
-     flex: 1 1 auto;
-     padding: 1.25rem
- }
-
- .card-weather .weather-date-location {
-     padding: 0 0 38px
- }
-
- .h3,
- h3 {
-     font-size: 1.56rem
- }
-
- .h1,
- .h2,
- .h3,
- .h4,
- .h5,
- .h6,
- h1,
- h2,
- h3,
- h4,
- h5,
- h6 {
-     font-family: "Poppins", sans-serif;
-     font-weight: 500
- }
-
- .text-gray,
- .card-subtitle,
- .new-accounts ul.chats li.chat-persons a p.joined-date {
-     color: #969696
- }
-
- p {
-     font-size: 13px
- }
-
- .text-gray,
- .card-subtitle,
- .new-accounts ul.chats li.chat-persons a p.joined-date {
-     color: #969696
- }
-
- .card-weather .weather-data {
-     padding: 0 0 4.75rem
- }
-
- .mr-auto,
- .mx-auto {
-     margin-right: auto !important
- }
-
- .display-3 {
-     font-size: 2.5rem
- }
-
- .card-weather .card-body {
-     background: #ffffff
- }
-
- .card-weather .weakly-weather {
-     background: #ffffff;
-     overflow-x: auto
- }
-
- .card-weather .weakly-weather .weakly-weather-item {
-     flex: 0 0 14.28%;
-     border-right: 1px solid #f2f2f2;
-     padding: 1rem;
-     text-align: center
- }
-
- .mb-0,
- .my-0 {
-     margin-bottom: 0 !important
- }
-
- .card-weather .weakly-weather .weakly-weather-item i {
-     font-size: 1.2rem
- }
+.card-footer{
+    padding:0
+}
