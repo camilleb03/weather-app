@@ -99,6 +99,8 @@ def forecast_5_day(city_name):
 def forecast_7_days(city_name):
     r = owm_api.get_city(city_name)
     if r.ok:
+        if not r.json():
+            abort(404, description="City not found")
         city_info = r.json()[0]
         country_name = city_info['address']['country']
         pretty_city = json.dumps(r.json(), sort_keys = True, indent = 4, separators = (',', ': '))
@@ -117,7 +119,7 @@ def forecast_7_days(city_name):
             abort(404, description=res.json()['message'])
     else:
         print(res.json()['message'])
-        abort(404, description=pos.json()['message'])
+        abort(404, description=r.json()['message'])
 
 @app.route('/favicon.ico')
 def favicon():
