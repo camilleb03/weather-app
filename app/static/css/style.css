@@ -1,17 +1,16 @@
 .center_div{
     margin: 0 auto;
     width:30%;
-    background-color: blueviolet;
 }
 
 .weather-next-day-even {
-    background-color: #457B9D;
-    color: #F1FAEE;
+    background-color: #1D3557;
+    color: #A8DADC;
 }
 
 .weather-next-day-odd {
-    background-color: #F1FAEE;
-    color: #457B9D;
+    background-color: #A8DADC;
+    color: #1D3557;
 }
 
 .vertical-center {
@@ -22,63 +21,24 @@
   align-items: center;
 }
 
- .stretch-card>.card {
-     width: 100%;
-     min-width: 100%
- }
-
-.day-weather-box {
-  border: 1px solid #28688C;
-  background-color: #2E7FA1;
-  border-radius: 5px;
-  height: 5em;
-}
-
-.day-weather-box p{
-  margin-bottom: 0;
-}
-
-.side-weather-info {
-  padding: 0px 10px;
-}
-
-.day-weather-inner-box {
-  display: inline-flex;
-  margin: 14px auto;
-  padding: 0px 5px;
-}
-
-.forecast-main {
-  padding: 0px 0px 0px 30px;
-}
-
 .forecast-icon {
   font-size: 25px;
   margin-left: 5px;
 }
 
-.modal-body p{
-  color: #333;
+.bg-custom-light {
+    background-color: #F1FAEE;
 }
 
-.weather-location input{
-    background-color:rgba(0,0,0,.5);
-    border:1px solid rgba(255,255,255,.5)
+.bg-custom-dark {
+    background-color: #1D3557;
 }
 
-.weather-location input:focus{
-    border:1px solid rgba(255,255,255,.7)
+.bg-custom-red {
+    background-color: #D8315B;
 }
 
-.weather-day{
-    height:150px;
-    border-left:1px solid rgba(0,0,0,.05)
-}
-
-.weather-day.is-today{
-    border-left:none
-    }
-
-.card-footer{
-    padding:0
+.navbar-default .navbar-nav > .active{
+    color: #000;
+    background: #d65c14;
 }
