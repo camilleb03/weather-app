@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for, flash, abort, send_from_directory, jsonify
-from helper import get_icon_class
+from helper import get_icon_class, parse_5_days_forecast, parse_current_and_daily_forecast
 from owm_wrapper import OWM_API
 import os
 import json
@@ -27,7 +27,7 @@ def search():
         if error is not None:
             flash(error)
         else:
-            return redirect(url_for("result", city_name=city))
+            return redirect(url_for("forecast_7_days", city_name=city))
 
     return render_template('weather/index.html')
 
@@ -85,24 +85,39 @@ def test():
 @app.route('/forecast-5-days/<city_name>')
 def forecast_5_day(city_name):
     res = owm_api.get_5_days_forecast_by_city_name(city_name)
+    pretty_res = json.dumps(res.json(), sort_keys = True, indent = 4, separators = (',', ': '))
     if res.ok:
         data = res.json()
-        print("Response\n", res)
+        parse_5_days_forecast(data)
+        # print("Response\n", data)
         return render_template('weather/5_days_forecast.html', data=data)
     else:
         print(res.json()['message'])
         abort(404, description=res.json()['message'])
     
-@app.route('/forecast-7-days')
-def forecast_7_days():
-    res = owm_api.get_7_days_forecast_by_coord()
-    if res.ok:
-        data = res.json()
-        print("Response\n", res)
-        return render_template('weather/5_day_forecast.html', data=data)
+@app.route('/forecast-7-days/<city_name>')
+def forecast_7_days(city_name):
+    r = owm_api.get_city(city_name)
+    if r.ok:
+        city_info = r.json()[0]
+        country_name = city_info['address']['country']
+        pretty_city = json.dumps(r.json(), sort_keys = True, indent = 4, separators = (',', ': '))
+        
+        res = owm_api.get_7_days_forecast_by_coord(lat=city_info['lat'], lon=city_info['lon'])
+        retty_res = json.dumps(res.json(), sort_keys = True, indent = 4, separators = (',', ': '))
+        print(res.url)
+        if res.ok:
+            data = res.json()
+            current_weather, daily_weather = parse_current_and_daily_forecast(data)
+            current_weather['country_name'] = country_name
+            current_weather['city_name'] = city_name
+            return render_template('weather/7_days_forecast.html', current_weather=current_weather, daily_weather=daily_weather)
+        else:
+            print(res.json()['message'])
+            abort(404, description=res.json()['message'])
     else:
         print(res.json()['message'])
-        abort(404, description=res.json()['message'])
+        abort(404, description=pos.json()['message'])
 
 @app.route('/favicon.ico')
 def favicon():
