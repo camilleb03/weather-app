@@ -55,7 +55,6 @@ class OWM_API:
     def get_7_days_forecast_by_coord(self, lat=55, lon=37.5, exclude="current,minutely,hourly,alerts"):
         try:
             res = requests.get(url=self.OWM_BASE_URL+"onecall", params=dict(lat=lat, lon=lon, exclude=exclude, APPID=self.OWM_API_KEY))
-            print(res.url)
             res.raise_for_status()
         except requests.exceptions.HTTPError as errh:
             print ("Http Error:",errh)
@@ -67,3 +66,20 @@ class OWM_API:
             print ("OOps: Something Else",err)
         finally:
             return res
+
+    @staticmethod
+    def get_user_location(ip_address):
+        try:
+            res = requests.get(f"http://ip-api.com/json/{ip_address}", params=dict(fields="status,message,lat,lon"))
+            res.raise_for_status()
+        except requests.exceptions.HTTPError as errh:
+            print ("Http Error:",errh)
+        except requests.exceptions.ConnectionError as errc:
+            print ("Error Connecting:",errc)
+        except requests.exceptions.Timeout as errt:
+            print ("Timeout Error:",errt)
+        except requests.exceptions.RequestException as err:
+            print ("OOps: Something Else",err)
+        finally:
+            return res
+        
