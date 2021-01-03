@@ -2,11 +2,13 @@ from flask import Flask, redirect, render_template, request, url_for, flash, abo
 from helper import get_icon_class
 from owm_wrapper import OWM_API
 import os
+import json
 
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 owm_api = OWM_API()
+user_location = None
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -44,13 +46,30 @@ def result(city_name):
 
 @app.route('/postmethod', methods=['POST'])
 def postmethod():
-    data = request.get_json()
-    print(data)
-    return jsonify(data)
+    user_location = request.get_json()
+    print("LOC: ", user_location)
+    return jsonify(user_location)
 
-@app.route('/geo_test')
+@app.route('/geo_test', methods=['GET', 'POST'])
+def geo_test():
+    if request.method == "POST":
+        user_location = request.get_json()
+        print("UL: ", user_location)
+        return jsonify(user_location)
+    if request.method == "GET":
+        return render_template('geo_test.html', user_location=user_location)
+
+@app.route('/geo_loc')
 def geo_loc():
-    return render_template('geo_test.html')
+    ip_address = request.remote_addr
+    print("IP: ", ip_address)
+    res = owm_api.get_user_location(ip_address=ip_address)
+    if res.ok and res.json()['status'] == 'success':
+        data = res.json()
+        print("Response\n", res)
+        return render_template('weather/test.html', data=data)
+    else:
+        abort(404, description=res.json()['message'])
 
 @app.route('/test')
 def test():
@@ -91,4 +110,4 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
-    app.run(debug=True,)
+    app.run(debug=True)
