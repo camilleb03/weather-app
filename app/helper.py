@@ -60,12 +60,11 @@ def parse_5_days_forecast(json_data):
         print('Celcius: {:.2f}'.format(temperature - 273.15))
         print('Farenheit: %.2f' % (temperature * 9/5 - 459.67))
 
-def parse_current_and_daily_forecast(json_data):
-    current_weather = WeatherMoment.parse_current_day(json_data['current'])
+def parse_daily_forecast(json_data):
+    # current_weather = WeatherMoment.parse_current_day(json_data['current'])
     daily_weather = []
     for daily_day in json_data['daily']:
         daily_weather.append(WeatherMoment.parse_daily_day(daily_day))
+    current_weather = daily_weather.pop(0)
     daily_weather.pop()
-    daily_weather.pop()
-    
     return current_weather, daily_weather

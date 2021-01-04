@@ -52,7 +52,7 @@ class OWM_API:
         finally:
             return res
 
-    def get_7_days_forecast_by_coord(self, lat=55, lon=37.5, exclude="minutely,hourly,alerts"):
+    def get_7_days_forecast_by_coord(self, lat=55, lon=37.5, exclude="current,minutely,hourly,alerts"):
         try:
             res = requests.get(url=self.OWM_BASE_URL+"onecall", params=dict(lat=lat, lon=lon, exclude=exclude, units="metric", APPID=self.OWM_API_KEY))
             res.raise_for_status()

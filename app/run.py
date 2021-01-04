@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, url_for, flash, abort, send_from_directory, jsonify
-from helper import get_icon_class, parse_5_days_forecast, parse_current_and_daily_forecast
+from helper import get_icon_class, parse_5_days_forecast, parse_daily_forecast
 from owm_wrapper import OWM_API
 import os
 import json
@@ -110,7 +110,7 @@ def forecast_7_days(city_name):
         print(res.url)
         if res.ok:
             data = res.json()
-            current_weather, daily_weather = parse_current_and_daily_forecast(data)
+            current_weather, daily_weather = parse_daily_forecast(data)
             current_weather['country_name'] = country_name
             current_weather['city_name'] = city_name
             return render_template('weather/7_days_forecast.html', current_weather=current_weather, daily_weather=daily_weather)

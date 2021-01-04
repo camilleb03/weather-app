@@ -17,7 +17,7 @@ class WeatherMoment:
         # Get day name of the week
         day_of_week = local_datetime.strftime('%A')
         # Temperature is measured in Celcius
-        temperature = current_weather['temp']
+        temperature = round(current_weather['temp'],0)
         # Weather condition
         description = current_weather['weather'][0]['description']
         icon_id = get_icon_class(current_weather['weather'][0]['id'])
@@ -36,11 +36,11 @@ class WeatherMoment:
         # Get date
         date = local_datetime.strftime('%B %-d, %Y')
         # Get day name of the week
-        day_of_week = local_datetime.strftime('%a')
+        day_of_week = local_datetime.strftime('%A')
         # Temperature is measured in Celcius
-        temperature = daily_weather['temp']['day']
-        temp_min = daily_weather['temp']['min']
-        temp_max = daily_weather['temp']['max']
+        temperature = int(round(daily_weather['temp']['day'],0))
+        temp_min = int(round(daily_weather['temp']['min'],0))
+        temp_max = int(round(daily_weather['temp']['max'],0))
         # Weather condition
         description = daily_weather['weather'][0]['description']
         icon_id = get_icon_class(daily_weather['weather'][0]['id'])
