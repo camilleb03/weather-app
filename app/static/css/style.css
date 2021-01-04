@@ -1,23 +1,29 @@
-.center_div{
-    margin: 0 auto;
-    width:30%;
+/*
+    APP COLORS : 
+    https://coolors.co/c6ddf0-f25f5c-ffe066-1d3557-70c1b3
+*/
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #C6DDF0;
 }
 
 .weather-next-day-even {
-    background-color: #1D3557;
-    color: #A8DADC;
+    background-color: #FFE066;
+    color: #1D3557;
 }
 
 .weather-next-day-odd {
-    background-color: #A8DADC;
+    background-color: #70C1B3;
     color: #1D3557;
 }
 
 .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 90vh; /* These two lines are counted as one :-)       */
-
-  display: flex;
+  min-height: 100%;
+  min-height: 90vh;
   align-items: center;
 }
 
@@ -27,7 +33,7 @@
 }
 
 .bg-custom-light {
-    background-color: #F1FAEE;
+    background-color: #C6DDF0;
 }
 
 .bg-custom-dark {
@@ -38,7 +44,49 @@
     background-color: #D8315B;
 }
 
-.navbar-default .navbar-nav > .active{
-    color: #000;
-    background: #d65c14;
+.white {
+    color: white;
+}
+
+.forecast-row {
+    border-radius: .25rem;
+    border: 1px solid #1D3557;
+}
+
+.center-margin {
+    margin-top: 5rem;
+}
+
+.btn-custom:hover, .btn-custom:focus, .btn-custom:active, .btn-custom.active, .open>.dropdown-toggle.btn-custom {
+    color: #1D3557!important;
+    background-color: #C6DDF0;
+    border-color: #1D3557;
+}
+
+.background-image {
+  width: 100%;
+  height:100%;
+  background-image: url("/static/images/background-weather.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align:center;
+  margin:auto;
+  padding:0;
+}
+
+.fill-page {
+  flex: 1;
+}
+
+section {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height:100%;
+}
+
+.card {
+    background-color: #1D3557;
+    color: white;
 }
