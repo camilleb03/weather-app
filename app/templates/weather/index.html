@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 {% block page_name %}Home{% endblock %}
 {% block page_content %}
-<div class="col-lg-6 offset-lg-3">
-  <div class="row justify-content-center vertical-center">
-    <form class="form-inline my-2 my-lg-0" method="post">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search a city" autofocus 
-      aria-label="Search" name="city" id="city" value="{{ request.form['city'] }}" required>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
- </div>
+<div class="background-image fill-page">
+    <div class="col-12 col-md-10 col-lg-6 offset-lg-3">
+        <div class="row justify-content-center vertical-center">
+            <form class="card card-sm" method="post">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-center">WELCOME to WeatherZone</h4>
+                    <div class="card-body row align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <!--end of col-->
+                        <div class="col">
+                            <input class="form-control form-control-lg form-control-borderless" type="search"
+                                placeholder="Search a city" autofocus aria-label="Search" name="city" id="city"
+                                value="{{ request.form['city'] }}" required>
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button class="btn btn-custom btn-lg bg-custom-red white" type="submit">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end of col-->
 {% endblock %}

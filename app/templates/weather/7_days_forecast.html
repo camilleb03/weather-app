@@ -1,42 +1,37 @@
 {% extends 'base.html' %}
 {% block page_name %}Forecast{% endblock %}
 {% block page_content %}
-
-<div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
-  <!-- Card -->
-  <div class="card bg-custom-light">
-    <div class="card-body text-center p-25">
-      <h3 class="card-title">
-        <span class="font-size-30">{{current_weather.city_name}}, </span>{{current_weather.country_name}}
-      </h3>
-      <p class=" card-text mb-30">
-        <span class="mr-5">{{current_weather.day_of_week.upper()}}</span> {{current_weather.date}}
-      </p>
-      <div class="mb-30">
-        <i class="mr-40 forecast-icon text-top wi {{current_weather.icon_id}}" id="ex4-rain" width="90" height="90"></i>
-        <div class="card-text">
-          <span class="font-size-50">{{current_weather.temperature}}°
-            <span class="font-size-40">C</span>
-          </span>
-        </div>
-        <span class="card-text">{{current_weather.description}}</span>
-      </div>
-      <!-- BEGIN : Next days forecast -->
-      <div class="row m-0">
-        {% for day in daily_weather %}
-        <div class="col-sm-2 {{ 'weather-next-day-even' if loop.index % 2 == 0 else 'weather-next-day-odd' }}">
-          <div>
-            <div>{{day.day_of_week}}</div>
-            <i class="wi {{day.icon_id}}"></i>
-            <div>{{day.temperature}}°
-              <span class="font-size-12">C</span>
+<div class="background-image fill-page">
+    <!-- Card -->
+    <div class="container justify-content-center vertical-center center-margin">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title">
+                    {{current_weather.city_name}}, {{current_weather.country_name}}
+                </h1>
+                <h2 class=" card-text mb-30">
+                    {{current_weather.day_of_week}} {{current_weather.date}}
+                </h2>
+                <div class="mb-30">
+                    <h1><i class="wi {{current_weather.icon_id}}"></i></h1>
+                    <h2 class="card-text">{{current_weather.temperature}}°C</h2>
+                    <h3 class="card-text">{{current_weather.description.upper()}}</h3>
+                </div>
             </div>
-          </div>
+            <div class="card-body text-center">
+                <!-- BEGIN : Next days forecast -->
+                <div class="row">
+                    {% for day in daily_weather %}
+                    <div class="col-sm-2 {{ 'weather-next-day-even' if loop.index % 2 == 0 else 'weather-next-day-odd' }}">
+                        <h5 class="card-text">{{day.day_of_week}}</h5>
+                        <h2><i class="wi {{day.icon_id}}"></i></h2>
+                        <h5 class="card-text">{{day.temperature}}°C</h5>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- END : Next days forecast -->
+            </div>
         </div>
-        {% endfor %}
-      </div>
-      <!-- END : Next days forecast -->
     </div>
-  </div>
 </div>
 {% endblock %}
